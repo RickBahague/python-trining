@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-'''
+"""Trining Python Utilities for PySpark and Local Data Science Work"""
+
 __author__ = "Rick Bahague"
 __copyright__ = "Copyright 2016, Trining Python Utilities for PySpark and Local Data Science Work"
 __credits__ = []
@@ -9,8 +10,6 @@ __version__ = "3.0"
 __maintainer__ = "Rick Bahague"
 __email__ = "rick@cp-union.com"
 __status__ = "Development"
-
-'''
 
 from datetime import datetime
 import pandas as pd
@@ -79,7 +78,7 @@ def get_date_from_year_week_dayOfWeek(x):
     day_str = str(x['year'])+str("-")+str(x['week'])+str("-")+str(x['day_str']+ " " +str(x['hour']))
     return datetime.strptime(day_str, '%Y-%U-%A %H')
 
-def delimited_to_df(file,struct_list,delimiter,sc=sc,sqlContext=sqlContext):
+def delimited_to_df(file,struct_list,delimiter,sc,sqlContext):
     splitter = str(delimiter)
     rdd = sc.textFile(file)
     rdd = rdd.map(lambda x: x.encode("utf-8")).map(lambda x: x.split(splitter)).map(lambda x: tuple([xx.strip('"') for xx in x]))
@@ -87,4 +86,4 @@ def delimited_to_df(file,struct_list,delimiter,sc=sc,sqlContext=sqlContext):
     return file_df
 
 if __name__ == "__main__":
-    print "Trining Python Utilities for PySpark and Local Data Science Work"
+    print("Trining Python Utilities for PySpark and Local Data Science Work ... loaded")
